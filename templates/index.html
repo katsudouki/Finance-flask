@@ -1,8 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Index {% endblock %}</h1>
-        <h1>test</h1>
-        
-    <h3>{{ utc_dt }}</h3>
-{% endblock %}
+<link rel="stylesheet" media="screen" href="{{url_for('static',filename='css/index.css')}}">
+<div class="container">
+    <div class="logo">{% block title %}Finance Dashboard{% endblock %}</div>
+    <div class="login-item">
+      <form action="/auth" method="post" class="form form-login">
+        <div class="form-field">
+          <label class="user" for="login-username"><span class="hidden">Usuario</span></label>
+          <input id="login-username" type="text" class="form-input" placeholder="Usuario" required>
+        </div>
+
+        <div class="form-field">
+          <label class="lock" for="login-password"><span class="hidden">Senha</span></label>
+          <input id="login-password" type="password" class="form-input" placeholder="Senha" required>
+        </div>
+
+        <div class="form-field">
+          <input type="submit" value="Login">
+        </div>
+      </form>
+    </div>
+</div>
+
+
+
+
+    {% endblock %}
