@@ -8,7 +8,7 @@ body {
 display: flex;
 justify-content: center;
 align-items: center;
-min-height: 100%;
+min-height: 90%;
 font-family: 'Supermercado One', sans-serif;
 color: #fff;
 background: #222222;
@@ -16,7 +16,7 @@ background: #16222A;
 background: -webkit-linear-gradient(to top, #16222A , #cdcdca);
 background: linear-gradient(to top, #16222A , #cdcdca); 
 .container {
-	background:rgba(58,63,68,0.5);
+  background:rgba(58,63,68,0.5);
   border-radius: 5px;
   box-shadow: 0 1.5px 0 0 rgba(0,0,0,0.1);
   width:450px;
