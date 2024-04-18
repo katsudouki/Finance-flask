@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" media="screen" href="{{url_for('static',filename='css/dashboard.css')}}">
+<link rel="stylesheet" media="screen" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/chart.js')}}"></script>
+<div class="table-container">
+    <br>
+ <center class="graficos"><h3>Dados Financeiros</h3></center>
+   <table class="graficos">
+    <tr><td>
+   Linha Comparativa de Lucros e Gastos no Ano Atual
+    <canvas id="linhaComparativa"></canvas>
+    </td>
+    <td>
+    Gráfico de Barras de Gastos por Categoria
+    <canvas id="graficoPizza"></canvas>
+    </td>
+</tr>
+</table>
+
+<script>
+    // Obter os dados da rota Flask
+    fetch('/dados')
+    .then(response => response.json())
+    .then(data => {
+        const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+        
+        // Gráfico de linha comparativo de lucros e gastos
+        new Chart(document.getElementById('linhaComparativa'), {
+            type: 'line',
+            data: {
+                labels: meses,
+                datasets: [
+                    {
+                        label: 'Lucros',
+                        data: data.lucros_por_mes,
+                        borderColor: '#0a8ac9',
+                        fill: false
+                    },
+                    {
+                        label: 'Gastos',
+                        data: data.dividas_por_mes,
+                        borderColor: '#cc2b3b',
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Somar os gastos de cada categoria
+        const gastosPorCategoria = data.gastos_por_categoria;
+        const gastosSomados = [];
+        for (let categoria in gastosPorCategoria) {
+            const totalCategoria = gastosPorCategoria[categoria].reduce((acc, val) => acc + val, 0);
+            gastosSomados.push(totalCategoria);
+        }
+
+        // Gráfico de pizza dos gastos por categoria
+        const gastosPorCategoriaData = {
+            labels: Object.keys(gastosPorCategoria),
+            datasets: [{
+                data: gastosSomados,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(25, 12, 192, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(25, 12, 192, 0.5)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(document.getElementById('graficoPizza'), {
+            type: 'pie',
+            data: gastosPorCategoriaData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'Gastos por Categoria'
+                },
+                legend: {
+                    display: false
+                }
+            }
+        });
+
+    })
+    .catch(error => console.error('Erro ao obter os dados:', error));
+</script>
+
+
+</div>
+{% endblock %}

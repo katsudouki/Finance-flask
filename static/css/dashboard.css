@@ -60,6 +60,10 @@ float:center;
   padding-left: 0px !important;
 
 }
+.table-container{
+  background-color:var(--mainbg) !important;
+  height: 100%;
+}
 .panelclicked{
 background-color:var(--mainbg) !important;
 color:var(--panel-menubgcolor) !important;
@@ -96,17 +100,67 @@ max-width: 96% !important;
 margin:0 auto;
 text-align: center;
 font-size:20px;
+align-items: center;
+}
+.prejuizo{
+width: 96% !important;
+max-width: 96% !important;
+margin:0 auto;
+text-align: center;
+font-size:20px;
 }
 .lucros th{
 color:white !important;
 background-color: #252525 !important;
 }
-.lucros input{
-max-width: 60px;
+
+.lucros input,select{
+max-width: 160px;
+min-width: 160px;
 border-radius: 4px;
 border:1px;
+
+text-align:center;
+background-color: #d0d0d0;
+}
+select  {
+  background-color: #d0d0d0;
+}
+.prejuizo{
+width: 96% !important;
+max-width: 96% !important;
+margin:0 auto;
+text-align: center;
+font-size:20px;
+}
+.prejuizo th{
+color:white !important;
+background-color: #252525 !important;
+}
+.prejuizo input,select{
+max-width: 140px;
+min-width: 140px;
+border-radius: 4px;
+border:1px;
+
+text-align:center;
+background-color: #d0d0d0;
 }
 
+
+
+.prejuizo input[type="checkbox"] {
+  max-width: 40px !important;
+  min-width: 40px !important;
+  border-radius: 4px;
+  border: 1px solid black; /* Adicionei uma borda para garantir a visibilidade */
+}
+
+.prejuizo input[type="checkbox"]:disabled {
+  opacity: 1; /* Mantém a opacidade total */
+  background-color: initial; /* Define a cor de fundo inicial */
+  border-color: black; /* Define a cor da borda */
+}
 .table-container {
   width: 100%;
   overflow-x: hidden;
@@ -117,4 +171,36 @@ thead {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+.hidden{
+display:none;
+}
+
+#linhaComparativa{
+  width: 500px!important;
+  height: 400px !important;
+  background-color: white;
+  border-radius: 8px;
+}
+
+#graficoPizza{
+  width: 500px!important;
+  height: 400px !important;
+  color:black;
+  background-color: white;
+  border-radius: 8px;
+
+
+}
+.graficos{
+  font-family: Roboto;
+  font-weight: bold;
+  color:#202020;
+  size: 80px;
+  align-self: center;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+   border-collapse: separate; 
+  border-spacing: 40px;
 }

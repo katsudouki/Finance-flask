@@ -13,15 +13,19 @@
   <nav>
     <br>
     <ul class="list-unstyled">
-      <li class="dashboard panelclicked"><i class='bx bxs-dashboard'></i>Dashboard</li>
-      <li class="entradas" id="entradas"><i class='bx bx-line-chart'></i>Entradas</li>
-      <li class="saidas" id="saidas"><i class='bx bx-line-chart-down' ></i>Saidas</li>
-      <li class="categorias" id="categorias"><i class='bx bx-purchase-tag-alt' ></i>Categorias</li>
-      <li class="configs" id="configs"><i class='bx bx-cog'></i>Configs</li>
+      <li class="dashboard panelclicked" onclick="carregarPagina('/dash')"><i class='bx bxs-dashboard'></i>Dashboard</li>
+       <li class="entradas" id="entradas"  onclick="carregarPagina('/entradas')"><i class='bx bx-line-chart'></i>Entradas</li>
+      <li class="saidas" id="saidas" onclick="carregarPagina('/saidas')"><i class='bx bx-line-chart-down' ></i>Saidas</li>
+      <li class="configs" id="configs"onclick="carregarPagina('/config')"><i class='bx bx-cog'></i>Configs</li>
     </ul>
   </nav>
   </div>
-  <div class="main" id="main"></div>
-  
+  <iframe class="main" id="main"></iframe>
+  <script>
+    carregarPagina('/dash')
+  </script>
 </div>
+
+
+
 {% endblock %}

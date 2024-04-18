@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" media="screen" href="{{url_for('static',filename='css/dashboard.css')}}">
+<link rel="stylesheet" media="screen" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+
+<div class="table-container">
+  <table class="table table-hover table-striped table-bordered prejuizo" id="prejus">
+
+    <thead class="thead-dark">
+      <tr><th colspan="100%" id="addbutton" ><i class="bx bx-plus-circle"></i> Nova Entrada</th></tr>
+
+      <tr>
+        <th scope="col" class="hidden">Id</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Dia</th>
+        <th scope="col">Mes</th>
+        <th scope="col">Ano</th>
+        <th scope="col">Categ</th>
+        <th scope="col">Pago</th>
+        <th scope="col">Desc</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        <tr class="hidden">
+        <td class="hidden">0</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td> 
+        <td></td> 
+        <td></td>
+      </tr>
+      {% for dado in dados %}
+      <tr>
+        <td class="hidden">{{dado.id}}</td>
+        <td>{{ dado.valor }}</td>
+        <td>{{dado.dia}}</td>
+        <td>{{dado.mes}}</td>
+        <td>{{dado.ano}}</td>
+        <td>{{dado.categoria}}</td>
+        <td>
+    {% if dado.pago == "true" %}
+    <input type='checkbox' value='true' id='pagoc' checked disabled="disabled" >
+    {% else %}
+    <input type='checkbox' value='false' id='pagoc' disabled="disabled">
+    {% endif %}
+
+</td>
+
+          
+        <td>{{dado.descricao}}</td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+ <script src="{{url_for('static', filename='js/tabela-edit.js')}}"></script>
+<script>
+  $(document).ready(function(){
+    $.ajax({
+    url: '/api/categories/',
+    type: 'GET',
+    dataType: 'json',
+    success: function(data) {
+        categ = data;
+            var tabela="dividas"
+            var selectColumnIndex = 5;
+            var checkboxColumnIndex = 6;
+            $('#prejus').makeeditable(categ, selectColumnIndex,checkboxColumnIndex,tabela);
+    },
+    error: function(xhr, status, error) {
+        console.error("Erro ao obter as categorias:", error);
+    }
+    });})
+</script>
+
+<script src="{{url_for('static',filename='js/dashboard.js')}}"></script>
+{% endblock %}

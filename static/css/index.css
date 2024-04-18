@@ -9,12 +9,12 @@ display: flex;
 justify-content: center;
 align-items: center;
 min-height: 90%;
-font-family: 'Supermercado One', sans-serif;
+font-family: Noto Sans, sans-serif;
 color: #fff;
 background: #222222;
 background: #16222A;
-background: -webkit-linear-gradient(to top, #16222A , #cdcdca);
-background: linear-gradient(to top, #16222A , #cdcdca); 
+background: -webkit-linear-gradient(to top, #16222A , #facdca);
+background: linear-gradient(to top, #16222A , #facdca); 
 .container {
   background:rgba(58,63,68,0.5);
   border-radius: 5px;
@@ -25,7 +25,7 @@ background: linear-gradient(to top, #16222A , #cdcdca);
 }
 
 .logo{
-  font-family: "Supermercado One";  
+  font-family: "Noto Sans";  
   font-size:20px;
   text-align: center;
   padding: 20px 20px 0;
@@ -47,7 +47,7 @@ input{
   padding: 0;
   -webkit-transition: background-color .3s;
   transition: background-color .3s;
-}
+ }
 
 .user:before {
   content: '\f007';
@@ -91,13 +91,13 @@ input{
   background-color: #eeeeee;
 }
 .form-login input[type="button"] {
-  background-color: #00B9BC;
+  background-color: #4e3a57;
   color: #eee;
   font-weight: bold;
   text-transform: uppercase;
 }
 .form-login input[type="button"]:focus, .form-login input[type="button"]:hover {
-  background-color: #197071;
+  background-color: #725380;
 }
 .form-field {
   display: -webkit-box;

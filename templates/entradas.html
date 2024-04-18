@@ -1,25 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
+<link rel="stylesheet" media="screen" href="{{url_for('static',filename='css/dashboard.css')}}">
+<link rel="stylesheet" media="screen" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+
 <div class="table-container">
   <table class="table table-hover table-striped table-bordered lucros" id="lucros">
+
     <thead class="thead-dark">
+      <tr><th colspan="100%" id="addbutton" ><i class="bx bx-plus-circle"></i> Nova Entrada</th></tr>
+
       <tr>
-        <th scope="col">Id</th>
+        <th scope="col" class="hidden">Id</th>
         <th scope="col">Valor</th>
         <th scope="col">Dia</th>
         <th scope="col">Mes</th>
         <th scope="col">Ano</th>
-        <th scope="col">Opções</th>
+        <th scope="col">Desc</th>
+        
       </tr>
     </thead>
     <tbody>
+        <tr class="hidden">
+        <td class="hidden">0</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td> 
+        <td></td> 
+        </tr>
       {% for dado in dados %}
       <tr>
-        <td>{{dado.id}}</td>
+        <td class="hidden">{{dado.id}}</td>
         <td>{{ dado.valor }}</td>
         <td>{{dado.dia}}</td>
         <td>{{dado.mes}}</td>
         <td>{{dado.ano}}</td>
+        <td>{{dado.descricao}}</td>
 
       </tr>
       {% endfor %}
@@ -27,16 +44,18 @@
   </table>
 </div>
  <script src="{{url_for('static', filename='js/tabela-edit.js')}}"></script>
-
 <script>
   $(document).ready(function(){
-      $('#lucros').makeeditable();
-});
- 
+
+            var tabela="lucros"
+            categ=['1','2','3','4','5','6','7','8','9','10','11','12']
+            var selectColumnIndex = 3;
+            var checkboxColumnIndex =6
+            
+            $('#lucros').makeeditable(categ, selectColumnIndex, checkboxColumnIndex, tabela);
+
+    })
 </script>
 
-
-
-
-
+<script src="{{url_for('static',filename='js/dashboard.js')}}"></script>
 {% endblock %}
